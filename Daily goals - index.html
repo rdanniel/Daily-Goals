@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="Daily Goals" />
+<meta name="theme-color" content="#000000" />
+<title>Daily Goals</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; background: #000; color: #fff; font-family: 'DM Sans', sans-serif; overscroll-behavior: none; }
+  body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+
+  .app { display: flex; flex-direction: column; height: 100dvh; max-width: 480px; margin: 0 auto; }
+  .header { padding: 20px 20px 0; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .header h1 { font-size: 20px; font-weight: 500; letter-spacing: 0.01em; }
+  .date-str { font-size: 12px; color: #555; }
+
+  .tabs { display: flex; margin: 16px 20px 0; border: 0.5px solid #222; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .tab { flex: 1; padding: 9px; background: none; border: none; color: #555; font-size: 13px; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.15s; }
+  .tab.active { background: #fff; color: #000; font-weight: 500; }
+
+  .scroll-area { flex: 1; overflow-y: auto; padding: 16px 20px 24px; -webkit-overflow-scrolling: touch; }
+  .goals-view, .calendar-view { display: none; }
+  .goals-view.active, .calendar-view.active { display: block; }
+
+  /* Goal cards */
+  .goal-card { border: 0.5px solid #222; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  .goal-header { display: flex; align-items: center; gap: 10px; padding: 13px 14px; cursor: pointer; user-select: none; }
+  .goal-icon { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .goal-info { flex: 1; min-width: 0; }
+  .goal-name { font-size: 14px; font-weight: 500; }
+  .goal-progress { font-size: 12px; color: #555; margin-top: 1px; }
+  .goal-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+  .icon-btn { background: none; border: none; color: #444; cursor: pointer; padding: 5px; border-radius: 5px; font-size: 16px; line-height: 1; transition: color 0.15s; display: flex; align-items: center; }
+  .icon-btn:active { color: #fff; }
+  .icon-btn.del:active { color: #f55c5c; }
+  .chevron { font-size: 13px; color: #444; transition: transform 0.2s; display: inline-block; }
+  .goal-card.open .chevron { transform: rotate(180deg); }
+  .goal-bar-wrap { height: 2px; background: #1a1a1a; margin: 0 14px 12px; border-radius: 2px; }
+  .goal-bar { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+
+  .subtasks { border-top: 0.5px solid #1a1a1a; display: none; }
+  .goal-card.open .subtasks { display: block; }
+
+  .subtask { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 0.5px solid #111; }
+  .check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #333; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; cursor: pointer; }
+  .subtask.done .check { border-color: #fff; background: #fff; }
+  .subtask.done .check::after { content:''; display:block; width:5px; height:3px; border-left:1.5px solid #000; border-bottom:1.5px solid #000; transform:rotate(-45deg) translate(1px,-1px); }
+  .subtask-label { font-size: 13px; color: #bbb; flex: 1; cursor: pointer; }
+  .subtask.done .subtask-label { color: #444; text-decoration: line-through; }
+  .subtask-del { background: none; border: none; color: #2a2a2a; cursor: pointer; font-size: 15px; padding: 4px; line-height: 1; display: flex; align-items: center; transition: color 0.15s; }
+  .subtask-del:active { color: #f55c5c; }
+
+  .add-subtask-row { display: flex; align-items: center; gap: 8px; padding: 9px 14px 11px; }
+  .add-subtask-input { flex: 1; background: #0d0d0d; border: 0.5px solid #222; border-radius: 6px; padding: 8px 10px; color: #fff; font-size: 13px; font-family: 'DM Sans', sans-serif; outline: none; }
+  .add-subtask-input::placeholder { color: #3a3a3a; }
+  .add-subtask-confirm { background: #fff; border: none; border-radius: 6px; color: #000; font-size: 12px; font-weight: 500; padding: 8px 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+  .add-goal-btn { width: 100%; padding: 12px; border: 0.5px dashed #2a2a2a; border-radius: 10px; background: none; color: #444; font-size: 13px; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 4px; }
+  .add-goal-btn:active { border-color: #555; color: #888; }
+
+  /* Modals */
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); align-items: flex-end; justify-content: center; z-index: 100; padding-bottom: env(safe-area-inset-bottom); }
+  .modal-bg.open { display: flex; }
+  .modal { background: #111; border: 0.5px solid #2a2a2a; border-radius: 16px 16px 0 0; padding: 24px 20px; width: 100%; max-width: 480px; }
+  .modal h3 { font-size: 15px; font-weight: 500; margin-bottom: 18px; }
+  .modal-input { width: 100%; background: #000; border: 0.5px solid #2a2a2a; border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; margin-bottom: 14px; }
+  .modal-input:focus { border-color: #555; }
+  .emoji-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .emoji-opt { width: 36px; height: 36px; border-radius: 8px; border: 1.5px solid #1a1a1a; background: #0a0a0a; cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center; }
+  .emoji-opt.sel { border-color: #fff; }
+  .color-row { display: flex; gap: 10px; margin-bottom: 20px; }
+  .color-opt { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+  .color-opt.sel { border-color: #fff; }
+  .modal-btns { display: flex; gap: 10px; }
+  .btn-cancel { flex: 1; padding: 12px; background: none; border: 0.5px solid #2a2a2a; border-radius: 10px; color: #777; font-size: 14px; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+  .btn-save { flex: 1; padding: 12px; background: #fff; border: none; border-radius: 10px; color: #000; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+  .btn-del { flex: 1; padding: 12px; background: #f55c5c; border: none; border-radius: 10px; color: #fff; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+  .confirm-msg { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.5; }
+
+  .del-modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); align-items: flex-end; justify-content: center; z-index: 100; padding-bottom: env(safe-area-inset-bottom); }
+  .del-modal-bg.open { display: flex; }
+  .del-modal { background: #111; border: 0.5px solid #2a2a2a; border-radius: 16px 16px 0 0; padding: 24px 20px; width: 100%; max-width: 480px; }
+  .del-modal h3 { font-size: 15px; font-weight: 500; margin-bottom: 10px; }
+
+  /* Calendar */
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .cal-nav { background: none; border: 0.5px solid #222; border-radius: 6px; color: #fff; width: 30px; height: 30px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .cal-month-label { font-size: 14px; font-weight: 500; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .cal-day-label { text-align: center; font-size: 11px; color: #444; padding-bottom: 6px; }
+  .cal-day { aspect-ratio: 1; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; color: #666; border: 0.5px solid transparent; }
+  .cal-day.today { color: #fff; font-weight: 500; border-color: #333; }
+  .cal-day.selected { border-color: #fff; color: #fff; }
+  .cal-day.empty { cursor: default; }
+  .dot-row { display: flex; gap: 2px; margin-top: 2px; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; }
+
+  .cal-detail { margin-top: 18px; border: 0.5px solid #1a1a1a; border-radius: 10px; padding: 14px; }
+  .cal-detail h4 { font-size: 12px; color: #555; margin-bottom: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; }
+  .cal-goal-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .cal-goal-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .cal-goal-name { font-size: 13px; flex: 1; }
+  .cal-goal-pct { font-size: 12px; color: #555; }
+
+  .streak-section { margin-top: 18px; }
+  .streak-section h4 { font-size: 12px; color: #555; margin-bottom: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; }
+  .streak-row { display: flex; gap: 3px; flex-wrap: wrap; }
+  .streak-dot { width: 10px; height: 10px; border-radius: 2px; background: #111; }
+  .streak-dot.done { background: #fff; }
+  .streak-dot.partial { background: #444; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>Daily Goals</h1>
+    <span class="date-str" id="dateStr"></span>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('goals')">Today</button>
+    <button class="tab" onclick="switchTab('calendar')">Calendar</button>
+  </div>
+  <div class="scroll-area">
+    <div class="goals-view active" id="goalsView">
+      <div id="goalsList"></div>
+      <button class="add-goal-btn" onclick="openGoalModal()">+ add goal</button>
+    </div>
+    <div class="calendar-view" id="calendarView">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
+        <span class="cal-month-label" id="calMonth"></span>
+        <button class="cal-nav" onclick="changeMonth(1)">›</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-detail" id="calDetail"></div>
+      <div class="streak-section">
+        <h4>30-day streak</h4>
+        <div class="streak-row" id="streakRow"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Goal modal -->
+<div class="modal-bg" id="goalModal">
+  <div class="modal">
+    <h3 id="goalModalTitle">New goal</h3>
+    <input class="modal-input" id="goalNameInput" placeholder="Goal name (e.g. Exercise)" />
+    <div class="emoji-row" id="emojiRow"></div>
+    <div class="color-row" id="colorRow"></div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeGoalModal()">Cancel</button>
+      <button class="btn-save" onclick="saveGoal()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete goal modal -->
+<div class="del-modal-bg" id="delGoalModal">
+  <div class="del-modal">
+    <h3>Delete goal?</h3>
+    <p class="confirm-msg">This removes the goal and all its subtasks from every tracked day.</p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeDelGoalModal()">Cancel</button>
+      <button class="btn-del" onclick="confirmDeleteGoal()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const EMOJIS = ['💧','📚','🏋️','🧘','🚶','🍎','😴','✍️','🎯','🏃','🧠','❤️'];
+const COLORS = ['#6C8EF5','#5CC8A0','#F5A55C','#F55C7A','#B07CF5','#F5E15C'];
+
+let goals = JSON.parse(localStorage.getItem('wv_goals') || '[]');
+let history = JSON.parse(localStorage.getItem('wv_history') || '{}');
+const todayKey = () => new Date().toISOString().slice(0,10);
+
+if (!goals.length) {
+  goals = [
+    { id: 1, name: 'Drink Water', emoji: '💧', color: '#6C8EF5', subtasks: ['8oz morning','8oz afternoon','8oz evening'] },
+    { id: 2, name: 'Reading', emoji: '📚', color: '#5CC8A0', subtasks: ['30 min reading'] },
+    { id: 3, name: 'Exercise', emoji: '🏋️', color: '#F5A55C', subtasks: ['10 push-ups','20 squats','1 mile walk'] }
+  ];
+  saveGoals();
+}
+
+let editingGoalId = null;
+let deletingGoalId = null;
+let selectedEmoji = EMOJIS[0];
+let selectedColor = COLORS[0];
+let openCards = {};
+let calYear = new Date().getFullYear();
+let calMon = new Date().getMonth();
+let calSelected = todayKey();
+
+function saveGoals() { localStorage.setItem('wv_goals', JSON.stringify(goals)); }
+function saveHistory() { localStorage.setItem('wv_history', JSON.stringify(history)); }
+function getTodayChecked(gid) { return history[todayKey()]?.[gid] || []; }
+
+function toggleSubtask(gid, idx) {
+  const k = todayKey();
+  if (!history[k]) history[k] = {};
+  if (!history[k][gid]) history[k][gid] = [];
+  const arr = history[k][gid];
+  const pos = arr.indexOf(idx);
+  if (pos > -1) arr.splice(pos, 1); else arr.push(idx);
+  saveHistory(); renderGoals();
+}
+
+function getPct(gid, dk) {
+  const g = goals.find(x => x.id === gid);
+  if (!g || !g.subtasks.length) return 0;
+  return Math.round(((history[dk]?.[gid] || []).length / g.subtasks.length) * 100);
+}
+
+function deleteSubtask(gid, idx) {
+  const g = goals.find(x => x.id === gid);
+  g.subtasks.splice(idx, 1);
+  Object.keys(history).forEach(dk => {
+    if (history[dk][gid]) {
+      history[dk][gid] = history[dk][gid].filter(i => i !== idx).map(i => i > idx ? i-1 : i);
+    }
+  });
+  saveGoals(); saveHistory(); renderGoals();
+}
+
+function addSubtask(gid) {
+  const input = document.getElementById('st-' + gid);
+  const v = input.value.trim();
+  if (!v) return;
+  goals.find(x => x.id === gid).subtasks.push(v);
+  input.value = '';
+  openCards[gid] = true;
+  saveGoals(); renderGoals();
+}
+
+function renderGoals() {
+  const el = document.getElementById('goalsList');
+  el.innerHTML = '';
+  goals.forEach(g => {
+    const checked = getTodayChecked(g.id);
+    const total = g.subtasks.length;
+    const done = checked.length;
+    const pct = total ? Math.round((done/total)*100) : 0;
+    const isOpen = !!openCards[g.id];
+    const card = document.createElement('div');
+    card.className = 'goal-card' + (isOpen ? ' open' : '');
+    card.innerHTML = `
+      <div class="goal-header" onclick="toggleCard(${g.id})">
+        <div class="goal-icon" style="background:${g.color}20">${g.emoji}</div>
+        <div class="goal-info">
+          <div class="goal-name">${g.name}</div>
+          <div class="goal-progress">${done}/${total} done</div>
+        </div>
+        <div class="goal-actions" onclick="event.stopPropagation()">
+          <button class="icon-btn" onclick="openGoalModal(${g.id})">✏️</button>
+          <button class="icon-btn del" onclick="openDelGoalModal(${g.id})">🗑️</button>
+          <span class="chevron">⌄</span>
+        </div>
+      </div>
+      <div class="goal-bar-wrap"><div class="goal-bar" style="width:${pct}%;background:${g.color}"></div></div>
+      <div class="subtasks">
+        ${g.subtasks.map((s,i) => `
+          <div class="subtask${checked.includes(i)?' done':''}">
+            <div class="check" onclick="toggleSubtask(${g.id},${i})"></div>
+            <span class="subtask-label" onclick="toggleSubtask(${g.id},${i})">${s}</span>
+            <button class="subtask-del" onclick="deleteSubtask(${g.id},${i})">✕</button>
+          </div>
+        `).join('')}
+        <div class="add-subtask-row">
+          <input class="add-subtask-input" id="st-${g.id}" placeholder="Add a subtask…" onkeydown="if(event.key==='Enter')addSubtask(${g.id})" />
+          <button class="add-subtask-confirm" onclick="addSubtask(${g.id})">Add</button>
+        </div>
+      </div>`;
+    el.appendChild(card);
+  });
+}
+
+function toggleCard(id) { openCards[id] = !openCards[id]; renderGoals(); }
+
+function openGoalModal(id) {
+  editingGoalId = id || null;
+  const g = id ? goals.find(x => x.id === id) : null;
+  document.getElementById('goalModalTitle').textContent = g ? 'Edit goal' : 'New goal';
+  document.getElementById('goalNameInput').value = g ? g.name : '';
+  selectedEmoji = g ? g.emoji : EMOJIS[0];
+  selectedColor = g ? g.color : COLORS[0];
+  renderEmojiRow(); renderColorRow();
+  document.getElementById('goalModal').classList.add('open');
+}
+function closeGoalModal() { document.getElementById('goalModal').classList.remove('open'); }
+
+function renderEmojiRow() {
+  document.getElementById('emojiRow').innerHTML = EMOJIS.map(e =>
+    `<div class="emoji-opt${e===selectedEmoji?' sel':''}" onclick="selectEmoji('${e}')">${e}</div>`).join('');
+}
+function renderColorRow() {
+  document.getElementById('colorRow').innerHTML = COLORS.map(c =>
+    `<div class="color-opt${c===selectedColor?' sel':''}" style="background:${c}" onclick="selectColor('${c}')"></div>`).join('');
+}
+function selectEmoji(e) { selectedEmoji = e; renderEmojiRow(); }
+function selectColor(c) { selectedColor = c; renderColorRow(); }
+function saveGoal() {
+  const name = document.getElementById('goalNameInput').value.trim();
+  if (!name) return;
+  if (editingGoalId) {
+    const g = goals.find(x => x.id === editingGoalId);
+    g.name = name; g.emoji = selectedEmoji; g.color = selectedColor;
+  } else {
+    goals.push({ id: Date.now(), name, emoji: selectedEmoji, color: selectedColor, subtasks: [] });
+  }
+  saveGoals(); closeGoalModal(); renderGoals();
+}
+
+function openDelGoalModal(id) { deletingGoalId = id; document.getElementById('delGoalModal').classList.add('open'); }
+function closeDelGoalModal() { document.getElementById('delGoalModal').classList.remove('open'); }
+function confirmDeleteGoal() {
+  goals = goals.filter(g => g.id !== deletingGoalId);
+  Object.keys(history).forEach(dk => { delete history[dk][deletingGoalId]; });
+  delete openCards[deletingGoalId];
+  saveGoals(); saveHistory(); closeDelGoalModal(); renderGoals();
+}
+
+function changeMonth(d) {
+  calMon += d;
+  if (calMon > 11) { calMon = 0; calYear++; }
+  if (calMon < 0) { calMon = 11; calYear--; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const today = todayKey();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calMonth').textContent = months[calMon] + ' ' + calYear;
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+    const el = document.createElement('div'); el.className='cal-day-label'; el.textContent=d; grid.appendChild(el);
+  });
+  const first = new Date(calYear, calMon, 1).getDay();
+  const days = new Date(calYear, calMon+1, 0).getDate();
+  for (let i=0; i<first; i++) { const el=document.createElement('div'); el.className='cal-day empty'; grid.appendChild(el); }
+  for (let d=1; d<=days; d++) {
+    const key = `${calYear}-${String(calMon+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const el = document.createElement('div');
+    el.className = 'cal-day'+(key===today?' today':'')+(key===calSelected?' selected':'');
+    el.innerHTML = `<span>${d}</span>`;
+    const dg = goals.filter(g => g.subtasks.length > 0);
+    if (dg.length && history[key]) {
+      const dots = document.createElement('div'); dots.className='dot-row';
+      dg.slice(0,4).forEach(g => { const pct=getPct(g.id,key); if(pct>0){const dot=document.createElement('div');dot.className='dot';dot.style.background=g.color+(pct>=100?'':'88');dots.appendChild(dot);} });
+      el.appendChild(dots);
+    }
+    el.onclick = () => { calSelected=key; renderCalendar(); };
+    grid.appendChild(el);
+  }
+  renderCalDetail(); renderStreak();
+}
+
+function renderCalDetail() {
+  const el = document.getElementById('calDetail');
+  const d = new Date(calSelected+'T12:00:00');
+  const label = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  let html = `<h4>${label}</h4>`;
+  const dg = goals.filter(g => g.subtasks.length > 0);
+  if (!dg.length) html += `<div style="color:#444;font-size:13px">No goals yet</div>`;
+  else dg.forEach(g => {
+    const pct = getPct(g.id, calSelected);
+    html += `<div class="cal-goal-row"><div class="cal-goal-dot" style="background:${g.color}"></div><span class="cal-goal-name">${g.name}</span><span class="cal-goal-pct">${pct}%</span></div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderStreak() {
+  const row = document.getElementById('streakRow'); row.innerHTML='';
+  for (let i=29; i>=0; i--) {
+    const d = new Date(); d.setDate(d.getDate()-i);
+    const key = d.toISOString().slice(0,10);
+    const dg = goals.filter(g => g.subtasks.length > 0);
+    const tp = dg.length ? dg.reduce((a,g)=>a+getPct(g.id,key),0)/dg.length : 0;
+    const dot = document.createElement('div');
+    dot.className = 'streak-dot'+(tp>=100?' done':tp>0?' partial':'');
+    row.appendChild(dot);
+  }
+}
+
+function switchTab(t) {
+  document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='goals')||(i===1&&t==='calendar')));
+  document.getElementById('goalsView').classList.toggle('active',t==='goals');
+  document.getElementById('calendarView').classList.toggle('active',t==='calendar');
+  if (t==='calendar') renderCalendar();
+}
+
+document.getElementById('dateStr').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
+renderGoals();
+</script>
+</body>
+</html>
