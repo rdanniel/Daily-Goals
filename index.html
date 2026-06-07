@@ -25,12 +25,10 @@ html,body{background:var(--bg);margin:0;padding:0;min-height:100%;color:var(--te
 body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
 .app{padding:20px 16px 100px;max-width:520px;margin:0 auto}
 
-/* Header */
 .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .hdr-title{font-family:var(--head);font-size:28px;font-weight:600;letter-spacing:.06em;color:var(--text)}
 .hdr-date{font-family:var(--body);font-size:12px;color:var(--text3)}
 
-/* Banner */
 .banner{border:0.5px solid var(--border);border-radius:12px;padding:13px 15px;margin-bottom:14px;background:var(--bg2)}
 .banner-row{display:flex;align-items:center;gap:12px}
 .banner-tier{font-family:var(--head);font-size:20px;font-weight:600;letter-spacing:.06em;line-height:1}
@@ -40,18 +38,15 @@ body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bot
 .banner-bar-wrap{height:2px;background:var(--border);border-radius:2px;margin-top:10px}
 .banner-bar{height:100%;border-radius:2px}
 
-/* Tabs */
 .tabs{display:flex;border:0.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;background:var(--bg2)}
 .tab-btn{flex:1;padding:11px 4px;background:none;border:none;color:var(--text3);font-family:var(--head);font-size:15px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .15s}
 .tab-btn.on{background:var(--text);color:var(--bg)}
 
-/* Category row */
 .cat-row{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .cat-row::-webkit-scrollbar{display:none}
 .cat-btn{padding:7px 15px;border-radius:20px;border:0.5px solid var(--border);background:var(--bg2);color:var(--text3);font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.04em;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
 
-/* Cards */
-.card{border:0.5px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;background:var(--bg2);position:relative}
+.card{border:0.5px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;background:var(--bg2)}
 .card.dim{opacity:.35}
 .card-hdr{display:flex;align-items:center;gap:10px;padding:13px 14px 11px;cursor:pointer;user-select:none;-webkit-user-select:none}
 .card-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--bg3)}
@@ -65,63 +60,76 @@ body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bot
 .icon-btn:active{color:var(--text);background:var(--bg3)}
 .icon-btn.del-btn:active{color:var(--danger)}
 
-/* Signal bars */
 .sig-row{display:flex;align-items:center;gap:8px;padding:0 14px 11px}
 .sig-bars{display:flex;align-items:flex-end;gap:2px;height:16px}
 .sig-bar{width:5px;border-radius:2px}
 .grade-lbl{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.04em;margin-left:2px}
 .tier-pill{font-family:var(--head);font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;letter-spacing:.04em}
-.days-lbl{font-family:var(--body);font-size:11px;color:var(--text3);margin-left:auto}
+.days-count{font-family:var(--body);font-size:11px;color:var(--text3);margin-left:auto}
 
-/* Subtasks */
-.subtasks{border-top:0.5px solid var(--border)}
-.subtask-item{border-bottom:0.5px solid var(--border)}
-.subtask-row{display:flex;align-items:center;gap:10px;padding:12px 14px 5px}
+.subgoals-wrap{border-top:0.5px solid var(--border)}
+.subgoal-item{border-bottom:0.5px solid var(--border)}
+.subgoal-main-row{display:flex;align-items:center;gap:10px;padding:11px 14px 6px}
 .check{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all .15s}
 .check.done{border-color:var(--text);background:var(--text)}
 .check-tick{width:6px;height:4px;border-left:2px solid var(--bg);border-bottom:2px solid var(--bg);transform:rotate(-45deg) translate(1px,-1px)}
+.check.inactive{opacity:.3;cursor:default}
 .sub-lbl{font-family:var(--body);font-size:14px;color:var(--text2);flex:1;cursor:pointer}
 .sub-lbl.done{color:var(--text3);text-decoration:line-through}
-.sub-lbl.inactive{color:var(--text3)}
-.sub-del{background:none;border:none;color:var(--border2);cursor:pointer;font-size:16px;padding:6px;display:flex;align-items:center;line-height:1;transition:color .15s}
+.sub-lbl.inactive{color:var(--text3);cursor:default}
+.sub-actions{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.sub-edit-btn{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:5px 6px;display:flex;align-items:center;line-height:1;border-radius:6px;transition:color .15s}
+.sub-edit-btn:active{color:var(--text);background:var(--bg3)}
+.sub-del{background:none;border:none;color:var(--border2);cursor:pointer;font-size:14px;padding:5px 6px;display:flex;align-items:center;line-height:1;border-radius:6px;transition:color .15s}
 .sub-del:active{color:var(--danger)}
 
-/* Subtask day tags */
-.sub-days{display:flex;gap:4px;padding:0 14px 10px 46px;flex-wrap:wrap}
+.subgoal-info-row{display:flex;align-items:center;gap:5px;padding:0 14px 10px 46px;flex-wrap:wrap}
+.sub-mode-tag{font-family:var(--head);font-size:10px;font-weight:600;letter-spacing:.04em;padding:2px 7px;border-radius:4px;border:0.5px solid var(--border2);color:var(--text3)}
+.sub-mode-tag.weekly{border-color:#6C8EF5;color:#6C8EF5}
 .sub-day-tag{font-family:var(--head);font-size:10px;font-weight:600;letter-spacing:.04em;padding:2px 6px;border-radius:4px;border:0.5px solid var(--border)}
 .sub-day-tag.active-day{border-color:var(--text);color:var(--text)}
 .sub-day-tag.off-day{color:var(--text3);border-color:var(--border)}
+.weekly-dots-row{display:flex;align-items:center;gap:5px;padding:0 14px 10px 46px}
+.weekly-dots{display:flex;gap:3px}
+.wdot{width:8px;height:8px;border-radius:50%;background:var(--border2)}
+.wdot.done{background:#6C8EF5}
+.weekly-count-lbl{font-family:var(--body);font-size:11px;color:var(--text3)}
 
-/* Add subtask section */
-.add-sub-section{padding:12px 14px 14px;background:var(--bg3);border-top:0.5px solid var(--border)}
+.add-sub-section{padding:11px 14px 13px;background:var(--bg3);border-top:0.5px solid var(--border)}
 .add-sub-lbl{font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin-bottom:9px}
 .add-sub-inp{width:100%;background:var(--bg);border:0.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:14px;font-family:var(--body);outline:none;margin-bottom:9px;display:block}
 .add-sub-inp::placeholder{color:var(--text3)}
 .add-sub-inp:focus{border-color:var(--border2)}
-.sub-day-hint{font-family:var(--body);font-size:11px;color:var(--text3);margin-bottom:8px}
-.sub-day-picker{display:flex;gap:4px;margin-bottom:10px}
-.sub-day-pill{flex:1;padding:7px 0;border-radius:7px;border:0.5px solid var(--border);background:var(--bg);color:var(--text3);font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-align:center;transition:all .15s}
-.sub-day-pill.on{background:var(--text);color:var(--bg);border-color:var(--text)}
-.add-sub-btn{width:100%;background:var(--text);border:none;border-radius:8px;color:var(--bg);font-family:var(--head);font-size:14px;font-weight:600;letter-spacing:.04em;padding:11px;cursor:pointer;transition:opacity .15s}
+.mode-toggle-row{display:flex;gap:6px;margin-bottom:9px}
+.mode-btn{flex:1;padding:9px 4px;border-radius:8px;border:0.5px solid var(--border);background:var(--bg);color:var(--text3);font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-align:center;transition:all .15s}
+.mode-btn.on{background:var(--bg2);border-color:var(--text);color:var(--text)}
+.mode-hint{font-family:var(--body);font-size:11px;color:var(--text3);margin-bottom:8px;line-height:1.5}
+.day-picker-row{display:flex;gap:4px;margin-bottom:0}
+.sdp{flex:1;padding:7px 0;border-radius:6px;border:0.5px solid var(--border);background:var(--bg);color:var(--text3);font-family:var(--head);font-size:11px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s}
+.sdp.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.weekly-target-row{display:flex;align-items:center;gap:8px}
+.weekly-target-lbl{font-family:var(--body);font-size:12px;color:var(--text2);flex:1}
+.count-btn{width:30px;height:30px;border-radius:6px;border:0.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--head);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.count-num{font-family:var(--head);font-size:20px;font-weight:600;color:var(--text);min-width:24px;text-align:center}
+.add-sub-btn{width:100%;background:var(--text);border:none;border-radius:8px;color:var(--bg);font-family:var(--head);font-size:14px;font-weight:600;letter-spacing:.04em;padding:11px;cursor:pointer;margin-top:9px;transition:opacity .15s}
 .add-sub-btn:active{opacity:.85}
+.mode-opts{margin-bottom:9px}
 
 .empty-state{text-align:center;padding:50px 20px;color:var(--text3);font-family:var(--body);font-size:14px}
 .add-goal-btn{width:100%;padding:14px;border:0.5px dashed var(--border);border-radius:12px;background:none;color:var(--text3);font-family:var(--head);font-size:16px;font-weight:600;letter-spacing:.04em;cursor:pointer;margin-top:4px;transition:all .15s}
 .add-goal-btn:active{border-color:var(--border2);color:var(--text2)}
 
-/* Growth */
 .sec-title{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-bottom:12px}
 .growth-card{border:0.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;background:var(--bg2)}
 .journey-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border:0.5px solid var(--border);border-radius:10px;margin-bottom:8px;background:var(--bg2)}
 
-/* Calendar */
 .cal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .cal-nav{background:var(--bg2);border:0.5px solid var(--border);border-radius:9px;color:var(--text);width:32px;height:32px;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .cal-nav:active{background:var(--bg3)}
 .cal-month-lbl{font-family:var(--head);font-size:20px;font-weight:600;letter-spacing:.04em;color:var(--text)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
 .cal-dl{text-align:center;font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--text3);padding-bottom:6px}
-.cal-day{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:var(--body);font-size:13px;color:var(--text3);border:0.5px solid transparent;background:none;transition:all .1s}
+.cal-day{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-family:var(--body);font-size:13px;color:var(--text3);border:0.5px solid transparent;transition:all .1s}
 .cal-day.today{color:var(--text);font-weight:500;border-color:var(--border2)}
 .cal-day.sel{border-color:var(--text);color:var(--text);background:var(--bg3)}
 .cal-day.empty{cursor:default}
@@ -136,7 +144,6 @@ body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bot
 .sdot{width:10px;height:10px;border-radius:3px;background:var(--bg3)}
 .sdot.full{background:var(--text)}.sdot.partial{background:var(--border2)}
 
-/* Modals */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;display:flex;align-items:flex-end;justify-content:center}
 .modal{background:var(--bg2);border:0.5px solid var(--border);border-radius:20px 20px 0 0;padding:24px 18px calc(env(safe-area-inset-bottom) + 36px);width:100%;max-width:520px;max-height:88vh;overflow-y:auto}
 .modal-handle{width:36px;height:4px;border-radius:2px;background:var(--border2);margin:0 auto 22px}
@@ -152,6 +159,7 @@ body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bot
 .btn-save:active{opacity:.85}
 .btn-del{flex:1;padding:14px;background:var(--danger-bg);border:0.5px solid #f55c5c44;border-radius:11px;color:var(--danger);font-family:var(--head);font-size:16px;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:opacity .15s}
 .btn-del:active{opacity:.85}
+.modal-note{font-family:var(--body);font-size:12px;color:var(--text3);margin-top:12px;line-height:1.5;padding:10px 13px;border:0.5px solid var(--border);border-radius:8px;background:var(--bg3)}
 .emoji-grid{display:flex;gap:8px;flex-wrap:wrap}
 .emoji-opt{width:40px;height:40px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);cursor:pointer;font-size:19px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .emoji-opt.sel{border-color:var(--text);background:var(--bg4)}
@@ -163,7 +171,6 @@ body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bot
 .custom-cat-wrap{display:none;margin-top:10px}
 .custom-cat-wrap.show{display:block}
 
-/* Ascend */
 .ascend-overlay{position:fixed;inset:0;background:var(--bg);z-index:300;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:32px}
 .ascend-icon{font-size:60px;margin-bottom:20px;animation:pulse 2s ease infinite}
 .ascend-tier-lbl{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
@@ -176,24 +183,16 @@ body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bot
 <div class="app" id="root"></div>
 <script>
 // ─── Constants ────────────────────────────────────────────────────────────────
-const EMOJIS=[
-  '◆','●','✦',
-  '💧','🍎','🥗','😴','🍵',
-  '📚','✍️','🧠','🎵','🎨','📓','🧘',
-  '🏋️','🏃','🚶','🎯','🔥','🏆','💪',
-];
+const EMOJIS=['◆','●','✦','💧','🍎','🥗','😴','🍵','📚','✍️','🧠','🎵','🎨','🧘','🏋️','🏃','🚶','🎯','🔥','🏆','💪'];
 const DLABELS=['Su','Mo','Tu','We','Th','Fr','Sa'];
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const BUILTIN_CATS=['health','mental','physical'];
 const CAT_COLORS={health:'#5CC8A0',mental:'#B07CF5',physical:'#F5A55C'};
 const TIERS=[
-  {name:'Carbon',  color:'#888'},
-  {name:'Iron',    color:'#6C8EF5'},
-  {name:'Bronze',  color:'#c87941'},
-  {name:'Silver',  color:'#aab8c2'},
-  {name:'Gold',    color:'#F5C842'},
-  {name:'Obsidian',color:'#B07CF5'},
-  {name:'Radiant', color:'#F5E15C'},
+  {name:'Carbon',color:'#888'},{name:'Iron',color:'#6C8EF5'},
+  {name:'Bronze',color:'#c87941'},{name:'Silver',color:'#aab8c2'},
+  {name:'Gold',color:'#F5C842'},{name:'Obsidian',color:'#B07CF5'},
+  {name:'Radiant',color:'#F5E15C'},
 ];
 const TIER_MSGS=[
   'Every legend starts here.',
@@ -205,56 +204,102 @@ const TIER_MSGS=[
   'These habits are who you are.',
 ];
 const GRADES=[
-  {name:'Static',   min:0,  color:'#555'},
-  {name:'Forming',  min:10, color:'#6C8EF5'},
-  {name:'Building', min:30, color:'#5CC8A0'},
-  {name:'Locked In',min:55, color:'#F5A55C'},
-  {name:'Elite',    min:75, color:'#F5C842'},
+  {name:'Static',min:0,color:'#555'},{name:'Forming',min:10,color:'#6C8EF5'},
+  {name:'Building',min:30,color:'#5CC8A0'},{name:'Locked In',min:55,color:'#F5A55C'},
+  {name:'Elite',min:75,color:'#F5C842'},
 ];
 const BAR_T=[10,30,55,75,90];
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-let goals=JSON.parse(localStorage.getItem('dg10_goals')||'[]');
-let hist=JSON.parse(localStorage.getItem('dg10_hist')||'{}');
-let meta=JSON.parse(localStorage.getItem('dg10_meta')||'{}');
-let customCats=JSON.parse(localStorage.getItem('dg10_cats')||'[]');
+let goals=JSON.parse(localStorage.getItem('dg14_goals')||'[]');
+let hist=JSON.parse(localStorage.getItem('dg14_hist')||'{}');
+let meta=JSON.parse(localStorage.getItem('dg14_meta')||'{}');
+let customCats=JSON.parse(localStorage.getItem('dg14_cats')||'[]');
 
-// Subtask shape: {label: string, days: number[]}
-// days=[] means inherit from parent goal's days
+// Subgoal shape: {label, mode:'daily'|'weekly', days:[], weeklyTarget:1}
 
-function getCatColor(cat){return CAT_COLORS[cat]||'#888';}
-function getCatLabel(cat){const cc=customCats.find(c=>c.id===cat);return cc?cc.label:cat;}
+function getCatColor(c){return CAT_COLORS[c]||'#888';}
+function getCatLabel(c){const cc=customCats.find(x=>x.id===c);return cc?cc.label:c;}
+
+function getWeekStart(dk){
+  const d=new Date(dk+'T12:00:00');const dow=d.getDay();
+  const diff=dow===0?-6:1-dow;const mon=new Date(d);mon.setDate(d.getDate()+diff);
+  return mon.toISOString().slice(0,10);
+}
+function getWeekDays(ws){
+  const days=[];
+  for(let i=0;i<7;i++){const d=new Date(ws+'T12:00:00');d.setDate(d.getDate()+i);days.push(d.toISOString().slice(0,10));}
+  return days;
+}
+function weeklyDoneCount(gid,subIdx,ws){
+  return getWeekDays(ws).filter(dk=>{const c=(hist[dk]&&hist[dk][gid])||[];return c.includes(subIdx);}).length;
+}
+function subActiveOnDay(sub,goalDays,dow){
+  if(sub.mode==='weekly')return true;
+  if(sub.days&&sub.days.length>0)return sub.days.includes(dow);
+  return goalDays.includes(dow);
+}
+function subCompletedToday(sub,gid,subIdx,dk,dow){
+  const checked=(hist[dk]&&hist[dk][gid])||[];
+  if(sub.mode==='weekly')return weeklyDoneCount(gid,subIdx,getWeekStart(dk))>=(sub.weeklyTarget||1);
+  return checked.includes(subIdx);
+}
+function getTodayProgress(g,dk){
+  const dow=new Date(dk+'T12:00:00').getDay();
+  const all=g.subgoals.map((s,i)=>({s,i})).filter(({s})=>subActiveOnDay(s,g.days,dow));
+  if(!all.length)return{done:0,total:0};
+  const done=all.filter(({s,i})=>subCompletedToday(s,g.id,i,dk,dow)).length;
+  return{done,total:all.length};
+}
+function getPct(gid,dk){
+  const g=goals.find(x=>x.id===gid);if(!g)return 0;
+  const{done,total}=getTodayProgress(g,dk);return total?Math.round(done/total*100):0;
+}
+function getSignalScore(gid){
+  const g=goals.find(x=>x.id===gid);if(!g)return 0;
+  const today=new Date();let streak=0;
+  for(let i=0;i<90;i++){
+    const d=new Date(today);d.setDate(d.getDate()-i);
+    if(!g.days.includes(d.getDay()))continue;
+    if(getPct(gid,d.toISOString().slice(0,10))>=100)streak++;else break;
+  }
+  let done30=0,sched30=0;
+  for(let i=0;i<30;i++){
+    const d=new Date(today);d.setDate(d.getDate()-i);
+    if(!g.days.includes(d.getDay()))continue;
+    sched30++;if(getPct(gid,d.toISOString().slice(0,10))>=100)done30++;
+  }
+  return Math.min(Math.min(streak*8,60)+Math.round((sched30>0?done30/sched30:0)*40),100);
+}
+function getGrade(score){let g=GRADES[0];for(const gr of GRADES){if(score>=gr.min)g=gr;}return g;}
+const getMeta=(gid)=>meta[gid]||{tier:0,totalDays:0};
+const getTierIdx=(gid)=>Math.min(getMeta(gid).tier,TIERS.length-1);
+const getDaysInTier=(gid)=>getMeta(gid).totalDays%100;
+const getTotalDays=(gid)=>getMeta(gid).totalDays;
 
 if(!goals.length){
   goals=[
     {id:1,name:'Drink Water',emoji:'💧',cat:'health',days:[0,1,2,3,4,5,6],
-      subtasks:[{label:'8oz morning',days:[]},{label:'8oz afternoon',days:[]},{label:'8oz evening',days:[]}]},
+      subgoals:[{label:'8oz morning',mode:'daily',days:[],weeklyTarget:1},{label:'8oz afternoon',mode:'daily',days:[],weeklyTarget:1},{label:'8oz evening',mode:'daily',days:[],weeklyTarget:1}]},
     {id:2,name:'Journaling',emoji:'✍️',cat:'mental',days:[1,2,3,4,5],
-      subtasks:[{label:'5 min freewrite',days:[]},{label:'Set intention',days:[]}]},
+      subgoals:[{label:'5 min freewrite',mode:'daily',days:[],weeklyTarget:1},{label:'Set intention',mode:'daily',days:[],weeklyTarget:1}]},
     {id:3,name:'Marathon Training',emoji:'🏃',cat:'physical',days:[1,2,3,4,5,6],
-      subtasks:[
-        {label:'Short run',days:[2,4]},
-        {label:'Interval run',days:[3]},
-        {label:'Long run',days:[6]},
+      subgoals:[
+        {label:'Short run',mode:'weekly',days:[],weeklyTarget:2},
+        {label:'Interval run',mode:'weekly',days:[],weeklyTarget:1},
+        {label:'Long run',mode:'weekly',days:[],weeklyTarget:1},
       ]},
     {id:4,name:'Reading',emoji:'📚',cat:'mental',days:[0,1,2,3,4,5,6],
-      subtasks:[{label:'30 min reading',days:[]}]},
+      subgoals:[{label:'30 min reading',mode:'daily',days:[],weeklyTarget:1}]},
   ];
-  const seeds={1:55,2:22,3:60,4:35};
-  const today=new Date();
+  const seeds={1:55,2:22,3:60,4:35};const today=new Date();
   goals.forEach(g=>{
     meta[g.id]={tier:0,totalDays:0};
     for(let i=seeds[g.id];i>=1;i--){
       const d=new Date(today);d.setDate(d.getDate()-i);
-      const dow=d.getDay();
-      if(!g.days.includes(dow))continue;
-      const dk=d.toISOString().slice(0,10);
-      if(!hist[dk])hist[dk]={};
-      const activeSubs=g.subtasks.map((s,idx)=>({s,idx})).filter(({s})=>subActiveOn(s,g.days,dow));
-      if(activeSubs.length&&Math.random()>0.15){
-        hist[dk][g.id]=activeSubs.map(({idx})=>idx);
-        meta[g.id].totalDays++;
-      }
+      const dow=d.getDay();if(!g.days.includes(dow))continue;
+      const dk=d.toISOString().slice(0,10);if(!hist[dk])hist[dk]={};
+      if(Math.random()>0.18){hist[dk][g.id]=g.subgoals.map((_,idx)=>idx);meta[g.id].totalDays++;}
     }
     meta[g.id].tier=Math.min(Math.floor(meta[g.id].totalDays/100),TIERS.length-1);
   });
@@ -262,77 +307,30 @@ if(!goals.length){
 }
 
 function save(){
-  localStorage.setItem('dg10_goals',JSON.stringify(goals));
-  localStorage.setItem('dg10_hist',JSON.stringify(hist));
-  localStorage.setItem('dg10_meta',JSON.stringify(meta));
-  localStorage.setItem('dg10_cats',JSON.stringify(customCats));
+  localStorage.setItem('dg14_goals',JSON.stringify(goals));
+  localStorage.setItem('dg14_hist',JSON.stringify(hist));
+  localStorage.setItem('dg14_meta',JSON.stringify(meta));
+  localStorage.setItem('dg14_cats',JSON.stringify(customCats));
 }
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-const todayKey=()=>new Date().toISOString().slice(0,10);
-const todayDow=()=>new Date().getDay();
-const getChecked=(gid,dk)=>(hist[dk]&&hist[dk][gid])||[];
-const getMeta=(gid)=>meta[gid]||{tier:0,totalDays:0};
-const getTierIdx=(gid)=>Math.min(getMeta(gid).tier,TIERS.length-1);
-const getDaysInTier=(gid)=>getMeta(gid).totalDays%100;
-const getTotalDays=(gid)=>getMeta(gid).totalDays;
-
-function subActiveOn(sub,goalDays,dow){
-  if(sub.days&&sub.days.length>0)return sub.days.includes(dow);
-  return goalDays.includes(dow);
-}
-
-function getPct(gid,dk){
-  const g=goals.find(x=>x.id===gid);if(!g)return 0;
-  const d=new Date(dk+'T12:00:00');const dow=d.getDay();
-  const activeIdxs=g.subtasks.map((s,i)=>subActiveOn(s,g.days,dow)?i:-1).filter(x=>x>=0);
-  if(!activeIdxs.length)return 0;
-  const checked=getChecked(gid,dk);
-  return Math.round(activeIdxs.filter(i=>checked.includes(i)).length/activeIdxs.length*100);
-}
-
-function getSignalScore(gid){
-  const g=goals.find(x=>x.id===gid);if(!g)return 0;
-  const today=new Date();let streak=0;
-  for(let i=0;i<90;i++){
-    const d=new Date(today);d.setDate(d.getDate()-i);
-    const dow=d.getDay();
-    const hasSubs=g.subtasks.some(s=>subActiveOn(s,g.days,dow));
-    if(!hasSubs)continue;
-    if(getPct(gid,d.toISOString().slice(0,10))>=100)streak++;else break;
-  }
-  let done30=0,sched30=0;
-  for(let i=0;i<30;i++){
-    const d=new Date(today);d.setDate(d.getDate()-i);
-    const dow=d.getDay();
-    const hasSubs=g.subtasks.some(s=>subActiveOn(s,g.days,dow));
-    if(!hasSubs)continue;
-    sched30++;
-    if(getPct(gid,d.toISOString().slice(0,10))>=100)done30++;
-  }
-  return Math.min(Math.min(streak*8,60)+Math.round((sched30>0?done30/sched30:0)*40),100);
-}
-function getGrade(score){let g=GRADES[0];for(const gr of GRADES){if(score>=gr.min)g=gr;}return g;}
 
 // ─── State ────────────────────────────────────────────────────────────────────
-let newSubDays=[];
+const todayKey=()=>new Date().toISOString().slice(0,10);
+const todayDow=()=>new Date().getDay();
+let newSub={mode:'daily',days:[],weeklyTarget:1};
+let editSub={goalId:null,subIdx:null,label:'',mode:'daily',days:[],weeklyTarget:1};
+
 let S={
   view:'today',cat:'all',open:{},
   editId:null,deleteId:null,modal:null,
   calY:new Date().getFullYear(),calM:new Date().getMonth(),calSel:todayKey(),
-  sName:'',sEmoji:EMOJIS[0],sCat:'health',sDays:[0,1,2,3,4,5,6],
-  sCustomCat:'',ascGid:null,
+  sName:'',sEmoji:EMOJIS[0],sCat:'health',sDays:[0,1,2,3,4,5,6],sCustomCat:'',ascGid:null,
 };
 
 // ─── DOM helpers ──────────────────────────────────────────────────────────────
 function mk(tag,cls,style,kids){
   const e=document.createElement(tag);
-  if(cls)e.className=cls;
-  if(style)Object.assign(e.style,style);
-  if(kids){(Array.isArray(kids)?kids:[kids]).forEach(k=>{
-    if(k==null)return;
-    e.appendChild(typeof k==='string'?document.createTextNode(k):k);
-  });}
+  if(cls)e.className=cls;if(style)Object.assign(e.style,style);
+  if(kids){(Array.isArray(kids)?kids:[kids]).forEach(k=>{if(k==null)return;e.appendChild(typeof k==='string'?document.createTextNode(k):k);});}
   return e;
 }
 function dv(cls,style,kids){return mk('div',cls,style,kids);}
@@ -344,7 +342,11 @@ function snapshotModal(){
   const ni=document.getElementById('modal-name');if(ni)S.sName=ni.value;
   const ci=document.getElementById('custom-cat-inp');if(ci)S.sCustomCat=ci.value;
 }
-function rerender(){snapshotModal();render();}
+function snapshotSubEdit(){
+  const ni=document.getElementById('sub-edit-name');if(ni)editSub.label=ni.value;
+}
+function rerenderGoal(){snapshotModal();render();}
+function rerenderSubEdit(){snapshotSubEdit();render();}
 
 // ─── Render ───────────────────────────────────────────────────────────────────
 function render(){
@@ -357,6 +359,7 @@ function render(){
   if(S.view==='growth')   root.appendChild(buildGrowth());
   if(S.modal==='goal')    root.appendChild(buildGoalModal());
   if(S.modal==='delete')  root.appendChild(buildDeleteModal());
+  if(S.modal==='subEdit') root.appendChild(buildSubEditModal());
   if(S.modal==='ascend')  root.appendChild(buildAscendModal());
 }
 
@@ -373,8 +376,7 @@ function buildBanner(){
   const bestDays=goals.length?Math.max(...goals.map(g=>getDaysInTier(g.id))):0;
   const score=goals.length?Math.round(goals.reduce((a,g)=>a+getSignalScore(g.id),0)/goals.length):0;
   const grade=getGrade(score);
-  const wrap=dv('banner');
-  const row=dv('banner-row');
+  const wrap=dv('banner');const row=dv('banner-row');
   row.appendChild(dv(null,{fontSize:'20px',color:tier.color,flexShrink:'0'},'◆'));
   const info=dv(null,{flex:'1'});
   info.appendChild(dv('banner-tier',{color:tier.color},'TIER '+(tIdx+1)+' — '+tier.name.toUpperCase()));
@@ -383,12 +385,10 @@ function buildBanner(){
   const right=dv(null);
   right.appendChild(dv('banner-days-num',{color:tier.color},String(bestDays)));
   right.appendChild(dv('banner-days-lbl',null,'days'));
-  row.appendChild(right);
-  wrap.appendChild(row);
+  row.appendChild(right);wrap.appendChild(row);
   const bw=dv('banner-bar-wrap');
   bw.appendChild(dv('banner-bar',{width:Math.min(bestDays,100)+'%',background:tier.color}));
-  wrap.appendChild(bw);
-  return wrap;
+  wrap.appendChild(bw);return wrap;
 }
 
 function buildTabs(){
@@ -415,8 +415,7 @@ function buildCatRow(){
 }
 
 function buildToday(){
-  const wrap=dv(null);
-  wrap.appendChild(buildCatRow());
+  const wrap=dv(null);wrap.appendChild(buildCatRow());
   const dow=todayDow();
   const vis=goals.filter(g=>S.cat==='all'||g.cat===S.cat);
   if(!vis.length)wrap.appendChild(dv('empty-state',null,'No goals here yet.'));
@@ -430,20 +429,14 @@ function buildToday(){
 function buildCard(g,dow){
   const isOpen=!!S.open[g.id];
   const activeToday=g.days.includes(dow);
-  const activeSubs=g.subtasks.map((s,i)=>({s,i})).filter(({s})=>subActiveOn(s,g.days,dow));
   const dk=todayKey();
-  const checked=getChecked(g.id,dk);
-  const done=activeSubs.filter(({i})=>checked.includes(i)).length;
-  const total=activeSubs.length;
-  const score=getSignalScore(g.id);
-  const grade=getGrade(score);
-  const tIdx=getTierIdx(g.id);
-  const tier=TIERS[tIdx];
-  const daysInTier=getDaysInTier(g.id);
-  const totalDays=getTotalDays(g.id);
+  const{done,total}=getTodayProgress(g,dk);
+  const score=getSignalScore(g.id);const grade=getGrade(score);
+  const tIdx=getTierIdx(g.id);const tier=TIERS[tIdx];
+  const daysInTier=getDaysInTier(g.id);const totalDays=getTotalDays(g.id);
   const isAuto=totalDays>=600;
-  const catColor=getCatColor(g.cat);
-  const catLabel=getCatLabel(g.cat);
+  const catColor=getCatColor(g.cat);const catLabel=getCatLabel(g.cat);
+  const ws=getWeekStart(dk);
 
   const card=dv('card'+(activeToday?'':' dim'));
   const hdr=dv('card-hdr');
@@ -456,92 +449,122 @@ function buildCard(g,dow){
   info.appendChild(nameEl);
   const metaRow=dv('card-meta');
   metaRow.appendChild(dv('cat-badge',{background:catColor+'22',color:catColor},catLabel.toUpperCase()));
-  metaRow.appendChild(dv('card-prog',null,activeToday?(isAuto?'Automatic':(total?done+'/'+total+' today':'no tasks today')):'not today'));
-  info.appendChild(metaRow);
-  hdr.appendChild(info);
-  const acts=dv('card-actions');
-  acts.onclick=e=>e.stopPropagation();
-  const eb=bt('icon-btn',null,()=>{S.editId=g.id;S.sName=g.name;S.sEmoji=g.emoji;S.sCat=g.cat;S.sDays=[...g.days];S.sCustomCat='';S.modal='goal';render();});
-  eb.appendChild(ic('pencil'));
-  const db=bt('icon-btn del-btn',null,()=>{S.deleteId=g.id;S.modal='delete';render();});
-  db.appendChild(ic('trash'));
-  const cv=ic('chevron-down');
-  cv.style.cssText='font-size:14px;color:#555;margin-left:2px;transition:transform .2s;transform:'+(isOpen?'rotate(180deg)':'none');
-  acts.appendChild(eb);acts.appendChild(db);acts.appendChild(cv);
-  hdr.appendChild(acts);
-  card.appendChild(hdr);
+  metaRow.appendChild(dv('card-prog',null,activeToday?(isAuto?'Automatic':(total?done+'/'+total+' done':'no tasks today')):'not today'));
+  info.appendChild(metaRow);hdr.appendChild(info);
 
-  const sigRow=dv('sig-row');
-  const bars=dv('sig-bars');
+  const acts=dv('card-actions');acts.onclick=e=>e.stopPropagation();
+  const eb=bt('icon-btn',null,()=>{S.editId=g.id;S.sName=g.name;S.sEmoji=g.emoji;S.sCat=g.cat;S.sDays=[...g.days];S.sCustomCat='';S.modal='goal';render();});eb.appendChild(ic('pencil'));
+  const db=bt('icon-btn del-btn',null,()=>{S.deleteId=g.id;S.modal='delete';render();});db.appendChild(ic('trash'));
+  const cv=ic('chevron-down');cv.style.cssText='font-size:14px;color:#555;margin-left:2px;transition:transform .2s;transform:'+(isOpen?'rotate(180deg)':'none');
+  acts.appendChild(eb);acts.appendChild(db);acts.appendChild(cv);hdr.appendChild(acts);card.appendChild(hdr);
+
+  const sigRow=dv('sig-row');const bars=dv('sig-bars');
   BAR_T.forEach((thresh,i)=>bars.appendChild(dv('sig-bar',{height:(8+i*2)+'px',background:score>=thresh?tier.color:'#1e1e1e'})));
   sigRow.appendChild(bars);
   sigRow.appendChild(dv('grade-lbl',{color:grade.color},isAuto?'AUTOMATIC':grade.name.toUpperCase()));
   sigRow.appendChild(dv('tier-pill',{background:tier.color+'1a',color:tier.color,border:'0.5px solid '+tier.color+'44'},tier.name.toUpperCase()));
-  sigRow.appendChild(dv('days-lbl',null,isAuto?'':daysInTier+'/100d'));
+  sigRow.appendChild(dv('days-count',null,isAuto?'':daysInTier+'/100d'));
   card.appendChild(sigRow);
 
   if(isOpen){
-    const sw=dv('subtasks');
-    g.subtasks.forEach((sub,i)=>{
-      const isDone=checked.includes(i);
-      const isActiveToday=subActiveOn(sub,g.days,dow);
-      const item=dv('subtask-item');
-      const row=dv('subtask-row');
-      const chk=dv('check'+(isDone?' done':''));
+    const sw=dv('subgoals-wrap');
+    g.subgoals.forEach((sub,i)=>{
+      const isWeekly=sub.mode==='weekly';
+      const target=sub.weeklyTarget||1;
+      const weekCount=isWeekly?weeklyDoneCount(g.id,i,ws):0;
+      const isDone=subCompletedToday(sub,g.id,i,dk,dow);
+      const canCheck=isWeekly?true:subActiveOnDay(sub,g.days,dow);
+      const item=dv('subgoal-item');
+      const mainRow=dv('subgoal-main-row');
+      const chk=dv('check'+(isDone?' done':'')+(canCheck?'':' inactive'));
       if(isDone)chk.appendChild(dv('check-tick'));
-      if(isActiveToday)chk.onclick=()=>doToggle(g.id,i);
-      else chk.style.opacity='0.3';
-      const lbl=dv('sub-lbl'+(isDone?' done':isActiveToday?'':' inactive'),null,sub.label);
-      if(isActiveToday)lbl.onclick=()=>doToggle(g.id,i);
-      const xb=bt('sub-del',null,()=>doDeleteSub(g.id,i));xb.appendChild(ic('x'));
-      row.appendChild(chk);row.appendChild(lbl);row.appendChild(xb);
-      item.appendChild(row);
-      const effectiveDays=sub.days&&sub.days.length>0?sub.days:g.days;
-      const tagRow=dv('sub-days');
-      effectiveDays.forEach(d=>{
-        const isToday=d===dow;
-        tagRow.appendChild(dv('sub-day-tag '+(isToday?'active-day':'off-day'),null,DLABELS[d]));
-      });
-      item.appendChild(tagRow);
+      if(canCheck)chk.onclick=e=>{e.stopPropagation();doToggle(g.id,i);};
+      const lbl=dv('sub-lbl'+(isDone?' done':canCheck?'':' inactive'),null,sub.label);
+      if(canCheck)lbl.onclick=e=>{e.stopPropagation();doToggle(g.id,i);};
+      const subActs=dv('sub-actions');
+      const editB=bt('sub-edit-btn',null,e=>{
+        e.stopPropagation();
+        editSub={goalId:g.id,subIdx:i,label:sub.label,mode:sub.mode,days:[...(sub.days||[])],weeklyTarget:sub.weeklyTarget||1};
+        S.modal='subEdit';render();
+      });editB.appendChild(ic('pencil'));
+      const delB=bt('sub-del',null,e=>{e.stopPropagation();doDeleteSub(g.id,i);});delB.appendChild(ic('x'));
+      subActs.appendChild(editB);subActs.appendChild(delB);
+      mainRow.appendChild(chk);mainRow.appendChild(lbl);mainRow.appendChild(subActs);
+      item.appendChild(mainRow);
+      if(isWeekly){
+        item.appendChild(dv('subgoal-info-row',null,[dv('sub-mode-tag weekly',null,'WEEKLY ×'+target)]));
+        const wpRow=dv('weekly-dots-row');
+        const dotsWrap=dv('weekly-dots');
+        for(let t=0;t<target;t++)dotsWrap.appendChild(dv('wdot'+(t<weekCount?' done':''),null,''));
+        wpRow.appendChild(dotsWrap);wpRow.appendChild(dv('weekly-count-lbl',null,weekCount+'/'+target+' this week'));
+        item.appendChild(wpRow);
+      } else {
+        const infoRow=dv('subgoal-info-row');
+        infoRow.appendChild(dv('sub-mode-tag',null,'DAILY'));
+        const effectiveDays=sub.days&&sub.days.length>0?sub.days:g.days;
+        effectiveDays.forEach(d=>infoRow.appendChild(dv('sub-day-tag '+(d===dow?'active-day':'off-day'),null,DLABELS[d])));
+        item.appendChild(infoRow);
+      }
       sw.appendChild(item);
     });
+
     const addSec=dv('add-sub-section');
-    addSec.appendChild(dv('add-sub-lbl',null,'Add Subtask'));
+    addSec.appendChild(dv('add-sub-lbl',null,'Add Subgoal'));
     const ai=document.createElement('input');
-    ai.className='add-sub-inp';ai.type='text';ai.placeholder='Subtask name…';ai.id='st-'+g.id;
+    ai.className='add-sub-inp';ai.type='text';ai.placeholder='Subgoal name…';ai.id='st-'+g.id;
     ai.onkeydown=e=>{if(e.key==='Enter')doAddSub(g.id);};
     addSec.appendChild(ai);
-    addSec.appendChild(dv('sub-day-hint',null,'Select specific days, or leave all off to use goal schedule'));
-    const dpWrap=dv('sub-day-picker');
-    DLABELS.forEach((lbl,di)=>{
-      const pill=bt('sub-day-pill'+(newSubDays.includes(di)?' on':''),null,()=>{
-        const pos=newSubDays.indexOf(di);
-        if(pos>-1)newSubDays.splice(pos,1);else newSubDays.push(di);
-        pill.className='sub-day-pill'+(newSubDays.includes(di)?' on':'');
-      },lbl);
-      dpWrap.appendChild(pill);
+
+    const modeRow=dv('mode-toggle-row');
+    ['daily','weekly'].forEach(m=>{
+      const b=bt('mode-btn'+(newSub.mode===m?' on':''),null,()=>{
+        newSub.mode=m;
+        document.querySelectorAll('.mode-btn').forEach((btn,bi)=>{btn.className='mode-btn'+((['daily','weekly'][bi])===m?' on':'');});
+        const dOpts=document.getElementById('daily-opts-'+g.id);const wOpts=document.getElementById('weekly-opts-'+g.id);
+        if(dOpts)dOpts.style.display=m==='daily'?'block':'none';
+        if(wOpts)wOpts.style.display=m==='weekly'?'block':'none';
+      },m==='daily'?'Specific Days':'Weekly Target');
+      modeRow.appendChild(b);
     });
-    addSec.appendChild(dpWrap);
-    addSec.appendChild(bt('add-sub-btn',null,()=>doAddSub(g.id),'ADD SUBTASK'));
-    sw.appendChild(addSec);
-    card.appendChild(sw);
+    addSec.appendChild(modeRow);
+
+    const dailyOpts=dv('mode-opts',{display:newSub.mode==='daily'?'block':'none'});
+    dailyOpts.id='daily-opts-'+g.id;
+    dailyOpts.appendChild(dv('mode-hint',null,'Select days or leave all off to use goal schedule'));
+    const dpRow=dv('day-picker-row');
+    DLABELS.forEach((lbl,di)=>{
+      const pill=bt('sdp'+(newSub.days.includes(di)?' on':''),null,()=>{
+        const pos=newSub.days.indexOf(di);if(pos>-1)newSub.days.splice(pos,1);else newSub.days.push(di);
+        pill.className='sdp'+(newSub.days.includes(di)?' on':'');
+      },lbl);
+      dpRow.appendChild(pill);
+    });
+    dailyOpts.appendChild(dpRow);addSec.appendChild(dailyOpts);
+
+    const weeklyOpts=dv('mode-opts',{display:newSub.mode==='weekly'?'block':'none'});
+    weeklyOpts.id='weekly-opts-'+g.id;
+    const wtRow=dv('weekly-target-row');
+    wtRow.appendChild(dv('weekly-target-lbl',null,'Times per week'));
+    const cntDisplay=dv('count-num',null,String(newSub.weeklyTarget));
+    const minB=bt('count-btn',null,()=>{if(newSub.weeklyTarget>1){newSub.weeklyTarget--;cntDisplay.textContent=newSub.weeklyTarget;}},'−');
+    const plusB=bt('count-btn',null,()=>{if(newSub.weeklyTarget<7){newSub.weeklyTarget++;cntDisplay.textContent=newSub.weeklyTarget;}},'+');
+    wtRow.appendChild(minB);wtRow.appendChild(cntDisplay);wtRow.appendChild(plusB);
+    weeklyOpts.appendChild(wtRow);addSec.appendChild(weeklyOpts);
+    addSec.appendChild(bt('add-sub-btn',null,()=>doAddSub(g.id),'ADD SUBGOAL'));
+    sw.appendChild(addSec);card.appendChild(sw);
   }
   return card;
 }
 
 // ─── Actions ──────────────────────────────────────────────────────────────────
 function doToggle(gid,idx){
-  const k=todayKey();
-  if(!hist[k])hist[k]={};if(!hist[k][gid])hist[k][gid]=[];
-  const arr=hist[k][gid];
-  const g=goals.find(x=>x.id===gid);
-  const dow=todayDow();
-  const activeIdxs=g.subtasks.map((s,i)=>subActiveOn(s,g.days,dow)?i:-1).filter(x=>x>=0);
-  const wasFull=activeIdxs.length>0&&activeIdxs.every(i=>arr.includes(i));
-  const pos=arr.indexOf(idx);
+  const dk=todayKey();
+  if(!hist[dk])hist[dk]={};if(!hist[dk][gid])hist[dk][gid]=[];
+  const arr=hist[dk][gid];const pos=arr.indexOf(idx);
   if(pos>-1)arr.splice(pos,1);else arr.push(idx);
-  const isFull=activeIdxs.length>0&&activeIdxs.every(i=>arr.includes(i));
-  if(!wasFull&&isFull){
+  const g=goals.find(x=>x.id===gid);
+  const{done,total}=getTodayProgress(g,dk);
+  if(total>0&&done===total){
     if(!meta[gid])meta[gid]={tier:0,totalDays:0};
     meta[gid].totalDays++;
     const newTier=Math.min(Math.floor(meta[gid].totalDays/100),TIERS.length-1);
@@ -550,84 +573,107 @@ function doToggle(gid,idx){
   save();render();
 }
 function doDeleteSub(gid,idx){
-  const g=goals.find(x=>x.id===gid);g.subtasks.splice(idx,1);
-  Object.keys(hist).forEach(dk=>{
-    if(hist[dk]&&hist[dk][gid])hist[dk][gid]=hist[dk][gid].filter(i=>i!==idx).map(i=>i>idx?i-1:i);
-  });
+  const g=goals.find(x=>x.id===gid);g.subgoals.splice(idx,1);
+  Object.keys(hist).forEach(dk=>{if(hist[dk]&&hist[dk][gid])hist[dk][gid]=hist[dk][gid].filter(i=>i!==idx).map(i=>i>idx?i-1:i);});
   save();render();
 }
 function doAddSub(gid){
   const inp2=document.getElementById('st-'+gid);
   const v=inp2&&inp2.value.trim();if(!v)return;
-  goals.find(x=>x.id===gid).subtasks.push({label:v,days:[...newSubDays]});
-  inp2.value='';newSubDays=[];S.open[gid]=true;save();render();
+  goals.find(x=>x.id===gid).subgoals.push({label:v,mode:newSub.mode,days:[...newSub.days],weeklyTarget:newSub.weeklyTarget});
+  inp2.value='';newSub={mode:'daily',days:[],weeklyTarget:1};
+  S.open[gid]=true;save();render();
+}
+
+// ─── Subgoal Edit Modal ───────────────────────────────────────────────────────
+function buildSubEditModal(){
+  const ov=dv('overlay');const modal=dv('modal');
+  modal.appendChild(dv('modal-handle'));
+  modal.appendChild(dv('modal-title',null,'EDIT SUBGOAL'));
+
+  modal.appendChild(mk('span','modal-lbl',null,'Name'));
+  const ni=document.createElement('input');
+  ni.className='modal-inp';ni.type='text';ni.placeholder='Subgoal name';ni.id='sub-edit-name';
+  ni.value=editSub.label;ni.oninput=()=>{editSub.label=ni.value;};
+  modal.appendChild(ni);
+
+  modal.appendChild(mk('span','modal-lbl',null,'Schedule Type'));
+  const modeRow=dv('mode-toggle-row');
+  ['daily','weekly'].forEach(m=>{
+    const b=bt('mode-btn'+(editSub.mode===m?' on':''),null,()=>{editSub.mode=m;rerenderSubEdit();},m==='daily'?'Specific Days':'Weekly Target');
+    modeRow.appendChild(b);
+  });
+  modal.appendChild(modeRow);
+
+  if(editSub.mode==='daily'){
+    const opts=dv('mode-opts');
+    opts.appendChild(dv('mode-hint',null,'Select specific days, or leave all off to use goal schedule'));
+    const dpRow=dv('day-picker-row');
+    DLABELS.forEach((lbl,di)=>{
+      const isOn=editSub.days.includes(di);
+      const pill=bt('sdp'+(isOn?' on':''),null,()=>{
+        const pos=editSub.days.indexOf(di);if(pos>-1)editSub.days.splice(pos,1);else editSub.days.push(di);
+        pill.className='sdp'+(editSub.days.includes(di)?' on':'');
+      },lbl);
+      dpRow.appendChild(pill);
+    });
+    opts.appendChild(dpRow);modal.appendChild(opts);
+  }
+  if(editSub.mode==='weekly'){
+    const opts=dv('mode-opts');
+    const wtRow=dv('weekly-target-row');
+    wtRow.appendChild(dv('weekly-target-lbl',null,'Times per week'));
+    const cntDisplay=dv('count-num',null,String(editSub.weeklyTarget));
+    const minB=bt('count-btn',null,()=>{if(editSub.weeklyTarget>1){editSub.weeklyTarget--;cntDisplay.textContent=editSub.weeklyTarget;}},'−');
+    const plusB=bt('count-btn',null,()=>{if(editSub.weeklyTarget<7){editSub.weeklyTarget++;cntDisplay.textContent=editSub.weeklyTarget;}},'+');
+    wtRow.appendChild(minB);wtRow.appendChild(cntDisplay);wtRow.appendChild(plusB);
+    opts.appendChild(wtRow);modal.appendChild(opts);
+  }
+
+  modal.appendChild(dv('modal-note',null,'✓ Your history and streak are preserved. Only the schedule changes going forward.'));
+
+  const btns=dv('modal-btns');
+  btns.appendChild(bt('btn-cancel',null,()=>{S.modal=null;render();},'CANCEL'));
+  btns.appendChild(bt('btn-save',null,()=>{
+    const name=editSub.label.trim();if(!name)return;
+    const g=goals.find(x=>x.id===editSub.goalId);if(!g)return;
+    g.subgoals[editSub.subIdx].label=name;
+    g.subgoals[editSub.subIdx].mode=editSub.mode;
+    g.subgoals[editSub.subIdx].days=[...editSub.days];
+    g.subgoals[editSub.subIdx].weeklyTarget=editSub.weeklyTarget;
+    save();S.modal=null;render();
+  },'SAVE'));
+  modal.appendChild(btns);ov.appendChild(modal);return ov;
 }
 
 // ─── Goal Modal ───────────────────────────────────────────────────────────────
 function buildGoalModal(){
   const g=S.editId?goals.find(x=>x.id===S.editId):null;
   const ov=dv('overlay');const modal=dv('modal');
-  modal.appendChild(dv('modal-handle'));
-  modal.appendChild(dv('modal-title',null,g?'EDIT GOAL':'NEW GOAL'));
-  const ni=document.createElement('input');
-  ni.className='modal-inp';ni.type='text';ni.placeholder='Goal name';ni.id='modal-name';
-  ni.value=S.sName;ni.oninput=()=>{S.sName=ni.value;};
-  modal.appendChild(ni);
-
+  modal.appendChild(dv('modal-handle'));modal.appendChild(dv('modal-title',null,g?'EDIT GOAL':'NEW GOAL'));
+  const ni=document.createElement('input');ni.className='modal-inp';ni.type='text';ni.placeholder='Goal name';ni.id='modal-name';ni.value=S.sName;ni.oninput=()=>{S.sName=ni.value;};modal.appendChild(ni);
   modal.appendChild(mk('span','modal-lbl',null,'Category'));
   const cr=dv('cat-sel-row');
-  BUILTIN_CATS.forEach(c=>{
-    const isSel=S.sCat===c;const color=CAT_COLORS[c];
-    cr.appendChild(bt('cat-sel-btn',{borderColor:isSel?color:'#2a2a2a',background:isSel?color+'22':'#1e1e1e',color:isSel?color:'#555'},()=>{S.sCat=c;rerender();},c.charAt(0).toUpperCase()+c.slice(1)));
-  });
-  customCats.forEach(cc=>{
-    const isSel=S.sCat===cc.id;
-    cr.appendChild(bt('cat-sel-btn',{borderColor:isSel?'#f0f0f0':'#2a2a2a',background:isSel?'#f0f0f020':'#1e1e1e',color:isSel?'#f0f0f0':'#666'},()=>{S.sCat=cc.id;rerender();},cc.label));
-  });
-  const ncb=bt('cat-sel-btn',{borderStyle:'dashed',color:'#555',borderColor:S.sCat==='__new__'?'#f0f0f0':'#2a2a2a'},()=>{S.sCat='__new__';rerender();},'+ Custom');
-  cr.appendChild(ncb);
+  BUILTIN_CATS.forEach(c=>{const isSel=S.sCat===c;const color=CAT_COLORS[c];cr.appendChild(bt('cat-sel-btn',{borderColor:isSel?color:'#2a2a2a',background:isSel?color+'22':'#1e1e1e',color:isSel?color:'#555'},()=>{S.sCat=c;rerenderGoal();},c.charAt(0).toUpperCase()+c.slice(1)));});
+  customCats.forEach(cc=>{const isSel=S.sCat===cc.id;cr.appendChild(bt('cat-sel-btn',{borderColor:isSel?'#f0f0f0':'#2a2a2a',background:isSel?'#f0f0f020':'#1e1e1e',color:isSel?'#f0f0f0':'#666'},()=>{S.sCat=cc.id;rerenderGoal();},cc.label));});
+  cr.appendChild(bt('cat-sel-btn',{borderStyle:'dashed',color:'#555',borderColor:S.sCat==='__new__'?'#f0f0f0':'#2a2a2a'},()=>{S.sCat='__new__';rerenderGoal();},'+ Custom'));
   modal.appendChild(cr);
-
   const ccWrap=dv('custom-cat-wrap'+(S.sCat==='__new__'?' show':''));
-  const ccInp=document.createElement('input');
-  ccInp.className='modal-inp';ccInp.style.marginTop='10px';ccInp.type='text';
-  ccInp.placeholder='Category name (e.g. Hard 45)';ccInp.id='custom-cat-inp';
-  ccInp.value=S.sCustomCat;ccInp.oninput=()=>{S.sCustomCat=ccInp.value;};
-  ccWrap.appendChild(ccInp);modal.appendChild(ccWrap);
-
+  const ccInp=document.createElement('input');ccInp.className='modal-inp';ccInp.style.marginTop='10px';ccInp.type='text';ccInp.placeholder='Category name (e.g. Hard 45)';ccInp.id='custom-cat-inp';ccInp.value=S.sCustomCat;ccInp.oninput=()=>{S.sCustomCat=ccInp.value;};ccWrap.appendChild(ccInp);modal.appendChild(ccWrap);
   modal.appendChild(mk('span','modal-lbl',null,'Icon'));
-  const eg=dv('emoji-grid');
-  EMOJIS.forEach(e=>{eg.appendChild(bt('emoji-opt'+(S.sEmoji===e?' sel':''),null,()=>{S.sEmoji=e;rerender();},e));});
-  modal.appendChild(eg);
-
+  const eg=dv('emoji-grid');EMOJIS.forEach(e=>{eg.appendChild(bt('emoji-opt'+(S.sEmoji===e?' sel':''),null,()=>{S.sEmoji=e;rerenderGoal();},e));});modal.appendChild(eg);
   modal.appendChild(mk('span','modal-lbl',null,'Goal Days'));
   const dr=dv('day-sel-row');
-  DLABELS.forEach((lbl,i)=>{
-    const isOn=S.sDays.includes(i);
-    dr.appendChild(bt('day-sel-pill'+(isOn?' on':''),null,()=>{
-      const pos=S.sDays.indexOf(i);if(pos>-1)S.sDays.splice(pos,1);else S.sDays.push(i);rerender();
-    },lbl));
-  });
+  DLABELS.forEach((lbl,i)=>{const isOn=S.sDays.includes(i);dr.appendChild(bt('day-sel-pill'+(isOn?' on':''),null,()=>{const pos=S.sDays.indexOf(i);if(pos>-1)S.sDays.splice(pos,1);else S.sDays.push(i);rerenderGoal();},lbl));});
   modal.appendChild(dr);
-  modal.appendChild(dv(null,{fontFamily:"'Outfit',sans-serif",fontSize:'12px',color:'#555',marginTop:'4px',marginBottom:'4px'},'Individual subtasks can be pinned to specific days within this schedule.'));
-
   const btns=dv('modal-btns');
   btns.appendChild(bt('btn-cancel',null,()=>{S.modal=null;S.sName='';render();},'CANCEL'));
   btns.appendChild(bt('btn-save',null,()=>{
     const name=S.sName.trim();if(!name)return;
     let finalCat=S.sCat;
-    if(S.sCat==='__new__'){
-      const label=S.sCustomCat.trim();if(!label)return;
-      const id='custom_'+Date.now();customCats.push({id,label});finalCat=id;
-    }
-    if(S.editId){
-      const gx=goals.find(x=>x.id===S.editId);
-      gx.name=name;gx.emoji=S.sEmoji;gx.cat=finalCat;gx.days=[...S.sDays];
-    } else {
-      const id=Date.now();
-      goals.push({id,name,emoji:S.sEmoji,cat:finalCat,days:[...S.sDays],subtasks:[]});
-      meta[id]={tier:0,totalDays:0};
-    }
+    if(S.sCat==='__new__'){const label=S.sCustomCat.trim();if(!label)return;const id='custom_'+Date.now();customCats.push({id,label});finalCat=id;}
+    if(S.editId){const gx=goals.find(x=>x.id===S.editId);gx.name=name;gx.emoji=S.sEmoji;gx.cat=finalCat;gx.days=[...S.sDays];}
+    else{const id=Date.now();goals.push({id,name,emoji:S.sEmoji,cat:finalCat,days:[...S.sDays],subgoals:[]});meta[id]={tier:0,totalDays:0};}
     save();S.modal=null;S.editId=null;S.sName='';render();
   },'SAVE'));
   modal.appendChild(btns);ov.appendChild(modal);return ov;
@@ -637,8 +683,7 @@ function buildGoalModal(){
 function buildDeleteModal(){
   const g=goals.find(x=>x.id===S.deleteId);
   const ov=dv('overlay');const modal=dv('modal');
-  modal.appendChild(dv('modal-handle'));
-  modal.appendChild(dv('modal-title',null,'DELETE GOAL?'));
+  modal.appendChild(dv('modal-handle'));modal.appendChild(dv('modal-title',null,'DELETE GOAL?'));
   modal.appendChild(dv(null,{fontFamily:"'Outfit',sans-serif",fontSize:'14px',color:'#aaa',marginBottom:'24px',lineHeight:'1.6'},(g?'"'+g.name+'"':'')+' and all its history will be permanently removed.'));
   const btns=dv('modal-btns');
   btns.appendChild(bt('btn-cancel',null,()=>{S.modal=null;render();},'CANCEL'));
@@ -665,8 +710,7 @@ function buildAscendModal(){
 
 // ─── Growth ───────────────────────────────────────────────────────────────────
 function buildGrowth(){
-  const wrap=dv(null);
-  wrap.appendChild(dv('sec-title',null,'Signal Strength'));
+  const wrap=dv(null);wrap.appendChild(dv('sec-title',null,'Signal Strength'));
   goals.forEach(g=>{
     const score=getSignalScore(g.id);const grade=getGrade(score);
     const tIdx=getTierIdx(g.id);const tier=TIERS[tIdx];
@@ -718,37 +762,30 @@ function buildCalendar(){
   ch.appendChild(dv('cal-month-lbl',null,MONTHS[S.calM].toUpperCase()+' '+S.calY));
   ch.appendChild(bt('cal-nav',null,()=>{S.calM++;if(S.calM>11){S.calM=0;S.calY++;}render();},'›'));
   wrap.appendChild(ch);
-  const grid=dv('cal-grid');
-  DLABELS.forEach(l=>grid.appendChild(dv('cal-dl',null,l)));
-  const first=new Date(S.calY,S.calM,1).getDay();
-  const days=new Date(S.calY,S.calM+1,0).getDate();
+  const grid=dv('cal-grid');DLABELS.forEach(l=>grid.appendChild(dv('cal-dl',null,l)));
+  const first=new Date(S.calY,S.calM,1).getDay();const days=new Date(S.calY,S.calM+1,0).getDate();
   for(let i=0;i<first;i++)grid.appendChild(dv('cal-day empty'));
   for(let day=1;day<=days;day++){
     const key=`${S.calY}-${String(S.calM+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
     const isT=key===today,isSel=key===S.calSel;
     const cell=dv('cal-day'+(isT?' today':'')+(isSel?' sel':''));
     cell.appendChild(txt(String(day)));
-    const dg=goals.filter(g=>g.subtasks.length>0);
+    const dg=goals.filter(g=>g.subgoals&&g.subgoals.length>0);
     if(dg.length&&hist[key]){
       const dr=dv('dot-row');
-      dg.slice(0,4).forEach(g=>{
-        const p=getPct(g.id,key);
-        if(p>0)dr.appendChild(dv('dot',{background:TIERS[getTierIdx(g.id)].color+(p>=100?'':'88')}));
-      });
+      dg.slice(0,4).forEach(g=>{const p=getPct(g.id,key);if(p>0)dr.appendChild(dv('dot',{background:TIERS[getTierIdx(g.id)].color+(p>=100?'':'88')}));});
       cell.appendChild(dr);
     }
     cell.onclick=()=>{S.calSel=key;render();};grid.appendChild(cell);
   }
   wrap.appendChild(grid);
-  const detDate=new Date(S.calSel+'T12:00:00');
-  const dow=detDate.getDay();
+  const detDate=new Date(S.calSel+'T12:00:00');const dow=detDate.getDay();
   const det=dv('cal-detail');
   det.appendChild(dv('cal-detail-title',null,detDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}).toUpperCase()));
-  const sg=goals.filter(g=>g.subtasks.some(s=>subActiveOn(s,g.days,dow)));
+  const sg=goals.filter(g=>g.days.includes(dow));
   if(!sg.length)det.appendChild(dv(null,{fontFamily:"'Outfit',sans-serif",color:'#555',fontSize:'13px'},'No goals scheduled'));
   else sg.forEach(g=>{
-    const p=getPct(g.id,S.calSel);
-    const row=dv('cal-goal-row');
+    const p=getPct(g.id,S.calSel);const row=dv('cal-goal-row');
     const tColor=TIERS[getTierIdx(g.id)].color;
     row.appendChild(dv(null,{width:'8px',height:'8px',borderRadius:'50%',background:tColor,flexShrink:'0'}));
     row.appendChild(dv(null,{fontFamily:"'Outfit',sans-serif",fontSize:'13px',flex:'1',color:'#f0f0f0'},g.name));
@@ -756,13 +793,11 @@ function buildCalendar(){
     det.appendChild(row);
   });
   wrap.appendChild(det);
-  const ss=dv('streak-sec');
-  ss.appendChild(dv('streak-title',null,'30-Day Streak'));
+  const ss=dv('streak-sec');ss.appendChild(dv('streak-title',null,'30-Day Streak'));
   const sr=dv('streak-row');
   for(let i=29;i>=0;i--){
-    const dd=new Date();dd.setDate(dd.getDate()-i);
-    const key=dd.toISOString().slice(0,10);const dow2=dd.getDay();
-    const dg=goals.filter(g=>g.subtasks.some(s=>subActiveOn(s,g.days,dow2)));
+    const dd=new Date();dd.setDate(dd.getDate()-i);const key=dd.toISOString().slice(0,10);const dow2=dd.getDay();
+    const dg=goals.filter(g=>g.days.includes(dow2));
     const tp=dg.length?dg.reduce((a,g)=>a+getPct(g.id,key),0)/dg.length:0;
     sr.appendChild(dv('sdot'+(tp>=100?' full':tp>0?' partial':'')));
   }
